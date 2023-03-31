@@ -1,0 +1,24 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+/*
+접근법
+자연수는 양의 정수만을 포함하기에 unsigned int 자료형을  사용
+자료들을 입력받으면서 값들을 누적하여 더함(평균값을 위함)
+정렬된 자료의 중간값은 중간 인덱스 위치의 값에 해당
+평균값과 중간값 출력하여 마무리
+*/
+int main(){
+	unsigned int numArray[5], average = 0;
+	for (int i = 0; i < 5; i++){
+		scanf("%u", &numArray[i]);
+		average += numArray[i];
+	}
+	for (int i = 0; i < 5; i++)
+		for (int j = 0; j < 4; j++)
+			if (numArray[j] > numArray[j + 1]){
+				unsigned int temp = numArray[j];
+				numArray[j] = numArray[j + 1];
+				numArray[j + 1] = temp;
+			}
+	printf("%u\n%u", average / 5, numArray[5 / 2]); return 0;
+}
