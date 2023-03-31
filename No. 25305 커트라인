@@ -1,0 +1,23 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+/*
+접근법
+정렬한 배열에서 (전체 인원수 - 수상자의 수) 번째에
+해당하는 점수가 커트라인이 됨을 이용하여 해결하면 된다.
+*/
+int main(){
+	unsigned int num, winner;
+	scanf("%u %u", &num, &winner);
+	int* scoreArray = malloc(sizeof(int) * num);
+	for (int i = 0; i < num; i++) { scanf("%u", &scoreArray[i]); }
+	for (int i = 0; i < num; i++)
+		for (int j = 0; j < num - 1; j++)
+			if (scoreArray[j] > scoreArray[j + 1]){
+				unsigned int temp = scoreArray[j];
+				scoreArray[j] = scoreArray[j + 1];
+				scoreArray[j + 1] = temp;
+			}
+	printf("%u", scoreArray[num - winner]);
+	return 0;
+}
