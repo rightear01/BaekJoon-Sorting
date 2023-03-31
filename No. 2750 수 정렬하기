@@ -1,0 +1,25 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+/*
+접근법
+버블정렬을 이용하여 문제를 풀이함.
+현재방과 다음방의 값을 비교하여 현재방의 값이 더 크다면
+다음방과의 값을 교환하는 식으로 정렬하였다.
+*/
+int main(){
+	int testCase;
+	scanf("%d", &testCase);
+	int* sortArray = malloc(sizeof(int) * testCase);
+	for (int i = 0; i < testCase; i++) scanf("%d", &sortArray[i]);
+	for (int i = 0; i < testCase; i++)
+		for (int j = 0; j < testCase - 1; j++)
+			if (*(sortArray + j) > *(sortArray + (j + 1))){
+				int temp = *(sortArray + j);
+				*(sortArray + j) = *(sortArray + (j + 1));
+				*(sortArray + (j + 1)) = temp;
+			}
+	for (int i = 0; i < testCase; i++)
+		printf("%d\n", *(sortArray + i));
+	return 0;
+}
