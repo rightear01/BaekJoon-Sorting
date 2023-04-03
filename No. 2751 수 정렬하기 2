@@ -1,0 +1,36 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+
+/* C언어의 stdlib.h에 포함되어 있는 QuickSorting 함수를 사용하여
+문제를 해결함. */
+
+int size = 0;
+int* createArray();
+void sort8print(int* arr, int arraySize);
+int compare(const void* first, const void* second);
+
+int main() {
+	int* numArray = createArray();
+	sort8print(numArray, size);
+	return 0;
+}
+
+int* createArray() {
+	int arraySize; scanf("%d", &arraySize);
+	int* array = malloc(sizeof(int) * arraySize);
+	for (int i = 0; i < arraySize; i++) { scanf("%d", &array[i]); size++; }
+	return array;
+}
+
+void sort8print(int* arr, int arraySize) {
+	qsort(arr, size, sizeof(int), compare);
+	for (int i = 0; i < arraySize; i++)
+		printf("%d\n", arr[i]);
+}
+
+int compare(const void* first, const void* second) {
+	if (*(int*)first > *(int*)second) return 1;
+	else if (*(int*)first < *(int*)second) return -1;
+	else return 0;
+}
