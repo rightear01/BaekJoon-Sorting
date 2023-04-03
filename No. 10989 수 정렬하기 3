@@ -1,0 +1,29 @@
+#define _CRT_SECURE_NO_WARNINGS
+#define MAX_NUM 10001
+#include <stdio.h>
+unsigned int countSort[MAX_NUM] = { 0, };
+/*
+카운팅 정렬
+입력받은 값 == 인덱스
+해당 인덱스의 값 == 그 수의 등장 횟수이다.
+
+수의 최대 크기가 10000이기 때문에 배열의 크기는 10001로 지정하였고
+출력값이 오름차순이기 때문에 인덱스 0번부터 해당 인덱스의 값(등장횟수)
+만큼 인덱스가 몇인지(입력받은 값) 출력하게 하여 문제를 풀이하였다.
+*/
+int main()
+{
+	unsigned int elementsNum, input;
+	scanf("%u", &elementsNum);
+
+	for (int i = 0; i < elementsNum; i++){
+		scanf("%u", &input);
+		countSort[input]++; 
+	}
+	for (int i = 0; i <= MAX_NUM; i++){
+		if (countSort[i] == 0) { continue; }
+		for (int j = 0; j < countSort[i]; j++) { printf("%u\n", i); }
+	}
+
+	return 0;
+}
