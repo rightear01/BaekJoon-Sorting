@@ -1,0 +1,31 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+/*
+접근법
+구조체 배열 사용 및 qsort()로 정렬
+나이가 어린 사람이 앞쪽으로
+나이가 같다면 저장된 순서가 빠른 순으로 정렬
+*/
+typedef struct {
+	int age;
+	char array[101];
+} member;
+int compare(const void* A, const void* B) {
+	member* arr1 = (member*)A;
+	member* arr2 = (member*)B;
+	return (arr1->age - arr2->age);
+  // arr1(앞쪽)이 더 크다면 정렬 (return -1)
+  // arr2가 더 크거나 or 같다면 pass
+}
+int main() {
+	int testCase;
+	scanf("%d", &testCase);
+	member* arr = (member*)malloc(sizeof(member) * testCase);
+	for (int i = 0; i < testCase; i++) scanf("%d %s", &arr[i].age, &arr[i].array);
+	qsort(arr, testCase, sizeof(member), compare);
+	for (int i = 0; i < testCase; i++) printf("%d %s\n", arr[i].age, arr[i].array);
+	free(arr);
+
+	return 0;
+}
